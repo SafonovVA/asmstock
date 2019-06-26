@@ -9,7 +9,7 @@
         require_once "mysql/connect.php";
         if (!isset($_REQUEST['enter'])) {?>
         <form action="<?=$_SERVER['SCRIPT_NAME']?>">
-        <label>Логин:</label>
+        <label>Лоsгин:</label>
         <input type="text" name="login" value=""><br />
         <label>Пароль:</label>
         <input type="password" name="password" value=""><br />
