@@ -5,20 +5,21 @@
   <meta charset='utf-8'>
 </head>
 <body>
-    <?php
+<?php
         require_once "mysql/connect.php";
-        if (!isset($_REQUEST['enter'])) {?>
-        <form action="<?=$_SERVER['SCRIPT_NAME']?>">
-        <label>Логин:</label>
-        <input type="text" name="login" value=""><br />
-        <label>Пароль:</label>
-        <input type="password" name="password" value=""><br />
-        <input type="submit" name="enter" value="Нажмите кнопку!">
-    </form>
-    <?php 
-        } else {
-            $login = "login";
-            $password = "password";
+        $login = "login";
+        $password = "password";
+        if (!isset($_REQUEST['enter'])) {
+?>
+            <form action="computers.php">
+                <label>Логин:</label>
+                <input type="text" name="login" value=""><br />
+                <label>Пароль:</label>
+                <input type="password" name="password" value=""><br />
+                <input type="submit" name="enter" value="Нажмите кнопку!">
+            </form>
+<?php 
+        } else {            
             if ($_REQUEST['login'] == authentication($login) && $_REQUEST['password'] == authentication($password)) {
                 echo "Доступ открыт для пользователя {$_REQUEST['login']}";
             } else {
@@ -27,6 +28,6 @@
                 #system("rundll32.exe user32.dll,LockWorkStation");
             }
         } 
-    ?>
+?>
 </body>
 </html>
