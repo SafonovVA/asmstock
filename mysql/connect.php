@@ -50,17 +50,29 @@
 		}
 		return $array[0][$index];
 	}
-
-	function resultToArray () {
+#Возвращает двумерный массив ключ => значение
+	function resultToArray ($i) {
 		global $mysqli;
 		connectDB();
-		$result = $mysqli->query("SELECT * FROM `pc` ORDER BY `id` ASC");
+		$result = $mysqli->query("SELECT * FROM `pc` WHERE `id`='".$i."' ORDER BY `id` ASC");
 		closeDB();
 		//$array = array ();
 		while (($row = $result->fetch_assoc()) != false) {
 			$array[] = $row;
 		}
 		//return array_values($array);
-		return $array;
+		return $array[0];
+		//return array_values($array);
+	}
+
+	function count_num_rows() {
+		global $mysqli;
+		connectDB();
+		$result = $mysqli->query("SELECT `id` FROM `pc`");
+		closeDB();
+		while (($row = $result->fetch_assoc()) != false) {
+			$array[] = $row;
+		}
+		return count($array);
 	}
 ?>

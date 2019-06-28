@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 28 2019 г., 05:33
--- Версия сервера: 8.0.12
--- Версия PHP: 7.2.10
+-- Время создания: Июн 28 2019 г., 13:36
+-- Версия сервера: 5.6.41
+-- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `pc` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `inv_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `inv_number` varchar(255) NOT NULL,
   `hardware` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -62,7 +62,8 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`id`, `login`, `password`) VALUES
 (1, 'safonov', '123'),
-(2, '111', '111');
+(3, 'karimov', '123'),
+(4, 'davletov', '123');
 
 --
 -- Индексы сохранённых таблиц
@@ -96,7 +97,7 @@ ALTER TABLE `pc`
 -- AUTO_INCREMENT для таблицы `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
