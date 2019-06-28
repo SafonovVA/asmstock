@@ -50,4 +50,17 @@
 		}
 		return $array[0][$index];
 	}
+
+	function resultToArray () {
+		global $mysqli;
+		connectDB();
+		$result = $mysqli->query("SELECT * FROM `pc` ORDER BY `id` ASC");
+		closeDB();
+		//$array = array ();
+		while (($row = $result->fetch_assoc()) != false) {
+			$array[] = $row;
+		}
+		//return array_values($array);
+		return $array;
+	}
 ?>
