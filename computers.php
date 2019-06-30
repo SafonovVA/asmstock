@@ -11,6 +11,8 @@
 			<th>Наименование</th>
 			<th>Инвентарный номер</th>
 			<th>Номер винчестера</th>
+			<th>Фамилия</th>
+			<th>Кабинет</th>
 			<th>Действие</th>
 		</tr>
 <?php			
@@ -19,10 +21,9 @@
 				if (isset($_REQUEST['delete'])) { #Удаление строки
 					$hidden = $_REQUEST['hidden'];
 					if (isset($_REQUEST['delete'][$hidden])) {
-						$hidden = Get_id($hidden);
 						connectDB();
 						$mysqli->query("DELETE FROM `pc` WHERE `id` = $hidden");
-						closeDB();
+						closeDB();	
 					}
 				}
 
@@ -31,26 +32,23 @@
 					$hidden = $_REQUEST['hidden'];
 					if (isset($_REQUEST['change'][$hidden])) {
 						$array = resultToArray_row($hidden);
-
 						echo "<tr>";
-						foreach ($array as $val) {
-							echo "<td>".$val."</td>";
+						foreach ($array as $key => $val) {
+							echo "<td><form><input type='text' name='$key' value='$val'><form></td>";
 						}
-						echo "<td><form>";
-							echo "<input type='hidden' name='hidden' value='$id_number'>";
-							echo "<input type='submit' name='change[$id_number]' id='change[$id_number]' value='Изменить'>";
-							echo "<input type='submit' name='delete[$id_number]' id='delete[$id_number]' value='Удалить'>";
-							echo $row_number++;
-						echo "</td></form>";
-						echo "</tr>";
-
+						echo "<td><form><input type='submit' name='confirm' value='Подтвердить'><form></td>"; 
+						echo "<tr>";
 					}
 				}
+				if (isset($_REQUEST['confirm'])) { #Применение изменений строки
+					$changed_id = Get_id($_REQUEST['id']);
+					$changed_row = resultToArray_row($changed_id);
+					changes($changed_id, $changed_row);
+				}
 
-				echo $hidden;
-				$arrays = resultToArray();
-				$row_number = 0;
-				if ($change) {
+				if (!$change) { #Вывод таблицы на экран
+					$arrays = resultToArray();
+					$row_number = 0;
 					foreach ($arrays as $array) {
 						$id_number = $arrays[$row_number]['id'];
 						echo "<tr>";
@@ -66,10 +64,6 @@
 						echo "</tr>";
 					}
 				}
-				
-
-				// echo count_num_rows();
-				// dumper($array);
 				
 ?>		
 	</table>

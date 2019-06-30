@@ -106,9 +106,22 @@ function resultToArray() {
 	function add_rows() {
 		global $mysqli;
 		connectDB();
-		for ($i = 0; $i < 1000; $i++) {
-			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `inv_number`, `hardware`) VALUES (NULL, '$i', '$i', '$i');");
+		for ($i = 1; $i <= 1000; $i++) {
+			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `inv_number`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$i', '$i', '$i', '$i', '$i');");
 		}
 		closeDB();
 	}
+
+	function changes($id, $row) {
+		global $mysqli;
+		connectDB();
+		foreach($row as $key => $val) {
+			if ($key == 'confirm') break;
+			$mysqli->query("UPDATE `pc` SET `$key` = '$_REQUEST[$key]' WHERE `pc`.`id` = '$id'");
+		}
+		closeDB();
+	}
+
+
+	//UPDATE `pc` SET `name` = '1', `inv_number` = '1', `hardware` = '1', `surname` = '1', `cabinet` = '1' WHERE `pc`.`id` = 33
 ?>
