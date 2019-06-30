@@ -51,28 +51,64 @@
 		return $array[0][$index];
 	}
 #Возвращает двумерный массив ключ => значение
-	function resultToArray ($i) {
+function resultToArray() {
+	global $mysqli;
+	connectDB();
+	$result = $mysqli->query("SELECT * FROM `pc` ORDER BY `id` ASC");
+	closeDB();
+	$array = array ();
+	while (($row = $result->fetch_assoc()) != false) {
+		//if(isset($array[1])) break;
+		$array[] = $row;
+	}
+	//return array_values($array);
+	return $array;
+	}
+
+	function resultToArray_row ($i) {
 		global $mysqli;
 		connectDB();
 		$result = $mysqli->query("SELECT * FROM `pc` WHERE `id`='".$i."' ORDER BY `id` ASC");
 		closeDB();
-		//$array = array ();
+		$array = array ();
 		while (($row = $result->fetch_assoc()) != false) {
+			if(isset($array[1])) break;
 			$array[] = $row;
 		}
 		//return array_values($array);
 		return $array[0];
-		//return array_values($array);
-	}
+		}
 
 	function count_num_rows() {
 		global $mysqli;
 		connectDB();
 		$result = $mysqli->query("SELECT `id` FROM `pc`");
 		closeDB();
+		$array = array();
 		while (($row = $result->fetch_assoc()) != false) {
+			//if(isset($array[1])) break;
 			$array[] = $row;
 		}
 		return count($array);
+	}
+
+	function Get_id($number) {
+		global $mysqli;
+		connectDB();
+		$result_set = $mysqli->query("SELECT * FROM `pc` WHERE `id`= '$number'");					
+		while (($row = $result_set->fetch_assoc()) != false){
+			$id = $row["id"];
+		};
+		closeDB();
+		return $id;
+	}
+
+	function add_rows() {
+		global $mysqli;
+		connectDB();
+		for ($i = 0; $i < 1000; $i++) {
+			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `inv_number`, `hardware`) VALUES (NULL, '$i', '$i', '$i');");
+		}
+		closeDB();
 	}
 ?>
