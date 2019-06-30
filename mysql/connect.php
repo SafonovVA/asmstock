@@ -92,7 +92,8 @@ function resultToArray() {
 		return count($array);
 	}
 
-	function Get_id($number) {
+	function Get_id($number) 
+	{
 		global $mysqli;
 		connectDB();
 		$result_set = $mysqli->query("SELECT * FROM `pc` WHERE `id`= '$number'");					
@@ -103,7 +104,8 @@ function resultToArray() {
 		return $id;
 	}
 
-	function add_rows() {
+	function add_rows() 
+	{
 		global $mysqli;
 		connectDB();
 		for ($i = 1; $i <= 1000; $i++) {
