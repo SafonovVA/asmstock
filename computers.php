@@ -18,9 +18,9 @@
 		<tr>
 			<th>№</th>
 			<th>Наименование</th>
-            <!-- <th>Серийный номер</th> -->
+            <th>Серийный номер</th>
 			<th>Инвентарный номер</th>
-            <!-- <th>Серийный HDD</th> -->
+            <th>Серийный HDD</th>
 			<th>Рег номер HDD</th>
 			<th>Фамилия</th>
 			<th>Кабинет</th>
@@ -31,16 +31,33 @@
     require_once "mysql/connect.php";
     
     if (isset($_REQUEST['add_row'])) {
-?>
+		$add = true;
+    	echo "<tr>
+        <form>"; 
+			$num_rows = count_num_rows() + 1;
+			echo "<input type='hidden' name='id' value='$num_rows'>";
+			echo "<input type='text' name='id_fictive' value='$num_rows' disabled>";
+			echo "<input type='text' name='name' value=''>";
+			echo "<input type='text' name='pc_serial' value=''>";
+			echo "<input type='text' name='inv_number' value=''>";
+			echo "<input type='text' name='hardware_serial' value=''>";
+			echo "<input type='text' name='hardware' value=''>";
+			echo "<input type='text' name='surname' value=''>";
+			echo "<input type='text' name='cabinet' value=''>";
+			echo "<input type='submit' name='add_values' value='Подтвердить'>";
+			echo "</form>
+    </tr>";
         
-    <tr>
-        <form>
-            <input type='text' name=''
-        </form>
-    </tr>        
-        
-<?php
-    }
+
+	}
+
+	dumper($_REQUEST);
+
+	if(isset($_REQUEST['add_values'])) { #Добавление строки
+		//$num_rows = count_num_rows() + 1;
+		add_new_rows($_REQUEST);
+	}
+
 
 	if (isset($_REQUEST['delete'])) { #Удаление строки
 		$hidden = $_REQUEST['hidden'];
@@ -77,7 +94,7 @@
 		changes($changed_id, $changed_row);
 	}
 
-	if (!$change) { #Вывод таблицы на экран
+	if ((!$change) && !($add)) { #Вывод таблицы на экран
 		$arrays = resultToArray();
 		$row_number = 0;
 		foreach ($arrays as $array) {
@@ -107,5 +124,5 @@
 <?php
 
     
-    echo microtime(true) - $time_1;
+    //echo microtime(true) - $time_1;
 ?>		
