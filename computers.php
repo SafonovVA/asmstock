@@ -10,18 +10,37 @@
 	</script>
 </head>
 <body>
+    <form>
+        <label>Добавить новую запись</label>
+        <input type='submit' name='add_row' id='add_row' value='Добавить'>
+    </form>  
     <table border="1" width="100%">
 		<tr>
 			<th>№</th>
 			<th>Наименование</th>
+            <!-- <th>Серийный номер</th> -->
 			<th>Инвентарный номер</th>
-			<th>Номер винчестера</th>
+            <!-- <th>Серийный HDD</th> -->
+			<th>Рег номер HDD</th>
 			<th>Фамилия</th>
 			<th>Кабинет</th>
 			<th>Действие</th>
 		</tr>
 <?php			
-	require_once "mysql/connect.php";
+    $time_1 = time();
+    require_once "mysql/connect.php";
+    
+    if (isset($_REQUEST['add_row'])) {
+?>
+        
+    <tr>
+        <form>
+            <input type='text' name=''
+        </form>
+    </tr>        
+        
+<?php
+    }
 
 	if (isset($_REQUEST['delete'])) { #Удаление строки
 		$hidden = $_REQUEST['hidden'];
@@ -39,13 +58,17 @@
 			echo "<tr>";
 			foreach ($array as $key => $val) {
 				if ($key == 'id') {
-					echo "<td><form><input type='text' name='$key' value='$val'><form></td>";
+					echo "<td><form><input type='text' name='$key' value='$val' disabled><form></td>";
 					continue;
 				}
 				echo "<td><form><input type='text' name='$key' value='$val'><form></td>";
-			}
-			echo "<td><form><input type='submit' name='confirm' value='Подтвердить'><form></td>"; 
-			echo "<tr>";
+            }
+            $changed_id = $array['id'];
+            echo "<td><form>";
+            echo "<input type='hidden' name='id' value='$changed_id'>";
+            echo "<input type='submit' name='confirm' value='Подтвердить'>";
+            echo "<form></td>"; 
+            echo "<tr>";
 		}
 	}
 	if (isset($_REQUEST['confirm'])) { #Применение изменений строки
@@ -75,5 +98,14 @@
 				echo "</td></form>";
 			echo "</tr>";
 		}
-	}		
+    }
+
+?>
+
+    
+
+<?php
+
+    
+    echo microtime(true) - $time_1;
 ?>		
