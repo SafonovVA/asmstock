@@ -53,13 +53,15 @@
 
 	if(isset($_REQUEST['add_values'])) { #Добавление строки
 		echo "sdfsdfsdf";
-		dumper($_REQUEST);
+		//dumper($_REQUEST);
 		$add = false;
 		//$add_new_row = $_REQUEST;
 		//$id = $add_new_row['id'];
 		//unset($add_new_row['id']);
 		//$add_new_row = $id + $add_new_row;
 		$add_array = $_REQUEST;
+		$add_array = array_values($add_array);
+		dumper($add_array);
 		add_new_rows($add_array);
 		//dumper($add_new_row);
 	}
@@ -130,5 +132,5 @@
 <?php
 
     
-    //echo microtime(true) - $time_1;
+    echo microtime(true) - $time_1;
 ?>		

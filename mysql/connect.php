@@ -120,7 +120,7 @@ function resultToArray() {
 		connectDB();
 		//$mysqli->query("INSERT INTO `pc` (`$id`) VALUES (NULL);");
 
-			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `pc_serial`, `inv_number`, `hardware_serial`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$row[{id}]', $row['name'], $row['pc_serial'], '$row['inv_number'], $row['hardware_serial'], $row['hardware'], $row['surname'], $row['cabinet']);");
+			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `pc_serial`, `inv_number`, `hardware_serial`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '$row[7]');");
 
 
 		// foreach($row as $key => $val) {
