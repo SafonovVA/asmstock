@@ -118,12 +118,11 @@ function resultToArray() {
 	{
 		global $mysqli;
 		connectDB();
-		$mysqli->query("INSERT INTO `pc` (`$id`) VALUES (NULL);");
+		//$mysqli->query("INSERT INTO `pc` (`$id`) VALUES (NULL);");
 		foreach($row as $key => $val) {
-			if ($key == 'id') continue;
+			//if ($key == 'id') continue;
 			if ($key == 'add_values') break;
-			
-			$mysqli->query("INSERT INTO `pc` (`$key`) VALUES ('$val');");
+			$mysqli->query("INSERT INTO `pc` '$key' VALUES '$val'");
 		}
 			#$mysqli->query("INSERT INTO `pc` (`id`, `name`, `pc_serial`, `inv_number`, `hardware_serial`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$i', '$i', '$i', '$i', '$i');");
 		closeDB();

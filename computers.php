@@ -32,30 +32,35 @@
     
     if (isset($_REQUEST['add_row'])) {
 		$add = true;
-    	echo "<tr>
-        <form>"; 
+    	echo "<tr>";
+        	echo "<form>"; 
 			$num_rows = count_num_rows() + 1;
-			echo "<input type='hidden' name='id' value='$num_rows'>";
-			echo "<input type='text' name='id_fictive' value='$num_rows' disabled>";
-			echo "<input type='text' name='name' value=''>";
-			echo "<input type='text' name='pc_serial' value=''>";
-			echo "<input type='text' name='inv_number' value=''>";
-			echo "<input type='text' name='hardware_serial' value=''>";
-			echo "<input type='text' name='hardware' value=''>";
-			echo "<input type='text' name='surname' value=''>";
-			echo "<input type='text' name='cabinet' value=''>";
-			echo "<input type='submit' name='add_values' value='Подтвердить'>";
-			echo "</form>
-    </tr>";
-        
-
+			echo "<td><input type='hidden' name='id' value='$num_rows'></td>";
+			echo "<td><input type='text' name='id_fictive' value='$num_rows' disabled></td>";
+			echo "<td><input type='text' name='name' value=''></td>";
+			echo "<td><input type='text' name='pc_serial' value=''></td>";
+			echo "<td><input type='text' name='inv_number' value=''></td>";
+			echo "<td><input type='text' name='hardware_serial' value=''></td>";
+			echo "<td><input type='text' name='hardware' value=''></td>";
+			echo "<td><input type='text' name='surname' value=''></td>";
+			echo "<td><input type='text' name='cabinet' value=''></td>";
+			echo "<td><input type='submit' name='add_values' value='Подтвердить'></td>";
+			echo "</form>";
+    echo "</tr>";
 	}
 
-	dumper($_REQUEST);
+	//dumper($_REQUEST);
 
 	if(isset($_REQUEST['add_values'])) { #Добавление строки
-		//$num_rows = count_num_rows() + 1;
+		echo "sdfsdfsdf";
+		dumper($_REQUEST);
+		$add = false;
+		//$add_new_row = $_REQUEST;
+		//$id = $add_new_row['id'];
+		//unset($add_new_row['id']);
+		//$add_new_row = $id + $add_new_row;
 		add_new_rows($_REQUEST);
+		//dumper($add_new_row);
 	}
 
 
