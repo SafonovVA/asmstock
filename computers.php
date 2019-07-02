@@ -59,7 +59,8 @@
 		//$id = $add_new_row['id'];
 		//unset($add_new_row['id']);
 		//$add_new_row = $id + $add_new_row;
-		add_new_rows($_REQUEST);
+		$add_array = $_REQUEST;
+		add_new_rows($add_array);
 		//dumper($add_new_row);
 	}
 

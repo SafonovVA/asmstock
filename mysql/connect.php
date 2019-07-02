@@ -119,11 +119,21 @@ function resultToArray() {
 		global $mysqli;
 		connectDB();
 		//$mysqli->query("INSERT INTO `pc` (`$id`) VALUES (NULL);");
-		foreach($row as $key => $val) {
-			//if ($key == 'id') continue;
-			if ($key == 'add_values') break;
-			$mysqli->query("INSERT INTO `pc` '$key' VALUES '$val'");
-		}
+
+			$mysqli->query("INSERT INTO `pc` (`id`, `name`, `pc_serial`, `inv_number`, `hardware_serial`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$row[{id}]', $row['name'], $row['pc_serial'], '$row['inv_number'], $row['hardware_serial'], $row['hardware'], $row['surname'], $row['cabinet']);");
+
+
+		// foreach($row as $key => $val) {
+		// 	//if ($key == 'id') continue;
+		// 	if ($key == 'id') {
+		// 		$mysqli->query("INSERT INTO `pc` ('$key') VALUES (NUll);");
+		// 		continue;
+		// 		echo "[$key] => $val <br />";
+		// 	}
+		// 	if ($key == 'add_values') break;
+		// 	$mysqli->query("INSERT INTO `pc` ('$key') VALUES ('$val');");
+		// 	echo "[$key] => $val <br />";
+		// }
 			#$mysqli->query("INSERT INTO `pc` (`id`, `name`, `pc_serial`, `inv_number`, `hardware_serial`, `hardware`, `surname`, `cabinet`) VALUES (NULL, '$i', '$i', '$i', '$i', '$i');");
 		closeDB();
 		#INSERT INTO `pc` (`id`, `cabinet`) VALUES (NULL, '456465');
