@@ -30,7 +30,7 @@
     $time_1 = time();
     require_once "mysql/connect.php";
     
-    if (isset($_REQUEST['add_row'])) {
+    if (isset($_REQUEST['add_row'])) { #Внесение данных новой строки
 		$add = true;
     	echo "<tr>";
         	echo "<form>"; 
@@ -49,23 +49,10 @@
     echo "</tr>";
 	}
 
-	//dumper($_REQUEST);
-
 	if(isset($_REQUEST['add_values'])) { #Добавление строки
-		echo "sdfsdfsdf";
-		//dumper($_REQUEST);
 		$add = false;
-		//$add_new_row = $_REQUEST;
-		//$id = $add_new_row['id'];
-		//unset($add_new_row['id']);
-		//$add_new_row = $id + $add_new_row;
-		$add_array = $_REQUEST;
-		$add_array = array_values($add_array);
-		dumper($add_array);
-		add_new_rows($add_array);
-		//dumper($add_new_row);
+		add_new_rows(array_values($_REQUEST));
 	}
-
 
 	if (isset($_REQUEST['delete'])) { #Удаление строки
 		$hidden = $_REQUEST['hidden'];
@@ -75,6 +62,7 @@
 			closeDB();	
 		}
 	}
+
 	if (isset($_REQUEST['change'])) { #Измение строки
 		$change = true;
 		$hidden = $_REQUEST['hidden'];
@@ -96,6 +84,7 @@
             echo "<tr>";
 		}
 	}
+
 	if (isset($_REQUEST['confirm'])) { #Применение изменений строки
 		$changed_id = Get_id($_REQUEST['id']);
 		$changed_row = resultToArray_row($changed_id);
@@ -125,12 +114,5 @@
 		}
     }
 
-?>
-
-    
-
-<?php
-
-    
-    echo microtime(true) - $time_1;
+    //echo microtime(true) - $time_1;
 ?>		
